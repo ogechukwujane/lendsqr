@@ -1,12 +1,12 @@
-
-import './App.scss'
+import "./App.scss";
+import { Login } from "./pages";
 
 function App() {
-
   return (
     <>
+      <Login />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

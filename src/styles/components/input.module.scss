@@ -1,0 +1,40 @@
+@import "../constants";
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  .label {
+    color: $theme-gray;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .input_wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    border: 2px solid $theme-gray15;
+    background: $theme-white;
+    input {
+      outline: none;
+      border: none;
+      width: 100%;
+    }
+    .password_icon {
+      color: $theme-primary;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+  .error_message {
+    color: $theme-error;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
