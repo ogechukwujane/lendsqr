@@ -1,0 +1,26 @@
+@import "../constants.scss";
+
+.Button {
+  border: none;
+  height: 44px;
+  width: 100%;
+  border-radius: 8px;
+  color: $theme-white;
+  background: $theme-primary90;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.2s ease-in-out;
+  &:hover{
+    background: $theme-primary;
+  }
+  &:active {
+    transform: scale(1.05);
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
