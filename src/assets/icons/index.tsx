@@ -9,3 +9,4 @@ export { CloseIcon } from "./close-icon";
 export { Hamburger } from "./hamburger";
 export { ChevronRightIcon } from "./chevron-right";
 export { ChevronLeftIcon } from "./chevron-left";
+export { FilterIcon } from "./filter-icon";

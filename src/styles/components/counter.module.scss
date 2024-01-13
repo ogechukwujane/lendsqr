@@ -1,0 +1,41 @@
+@import "../constants.scss";
+
+.Counter {
+  border-radius: 4px;
+  border: 1px solid #213f7d0f;
+  background: $theme-white;
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 20px;
+  width: calc(25% - 61px);
+  @media (max-width: 768px) {
+    width: calc(50% - 55px);
+  }
+  @media (max-width: 768px) {
+    width: calc(100% - 0px);
+  }
+
+  .icon_wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .title {
+    color: $theme-gray;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .counts {
+    color: $theme-secondary;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
