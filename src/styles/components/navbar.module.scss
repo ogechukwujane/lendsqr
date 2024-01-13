@@ -1,0 +1,120 @@
+@import "../constants";
+
+.Navbar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  background: $theme-white;
+  filter: drop-shadow(3px 0px 20px rgba(0, 0, 0, 0.04));
+  @media (max-width: 768px) {
+    height: 70px;
+    justify-content: space-between;
+  }
+  .logo_wrap {
+    min-width: calc(280px - 20px);
+    @media (max-width: 768px) {
+      min-width: unset;
+    }
+    .logo {
+      width: 140px;
+      @media (max-width: 768px) {
+        width: 100px;
+      }
+    }
+  }
+  .nav_content {
+    width: 100%;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      width: unset;
+      padding: 0px 0px 0px 10px;
+    }
+    .search_wrap {
+      display: flex;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: $theme-white;
+      input {
+        outline: none;
+        border: none;
+        width: 100%;
+        border-radius: 8px 0px 0px 8px;
+        padding: 0px 0px 0px 10px;
+        border: 2px solid $theme-gray15;
+        border-right-color: transparent;
+      }
+      .close_icon_wrap {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        border-top: 2px solid $theme-gray15;
+        border-bottom: 2px solid $theme-gray15;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        border: none;
+        background: $theme-primary;
+        cursor: pointer;
+        svg {
+          fill: $theme-white;
+        }
+      }
+    }
+    .profile_section {
+      display: flex;
+      align-items: center;
+      column-gap: 18px;
+      .searchWrap {
+        display: none;
+        @media (max-width: 768px) {
+          display: block;
+        }
+        svg {
+          fill: $theme-secondary;
+        }
+      }
+      .docs {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      .profile {
+        display: flex;
+        column-gap: 8px;
+        .profile_image {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: black;
+        }
+        .name_wrap {
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+          @media (max-width: 768px) {
+            display: none;
+          }
+        }
+        .name {
+          color: $theme-secondary;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

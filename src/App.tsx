@@ -1,10 +1,10 @@
 import "./App.scss";
-import { Login } from "./pages";
+import { RouterConfig } from "./route";
 
 function App() {
   return (
     <>
-      <Login />
+      <RouterConfig />
     </>
   );
 }

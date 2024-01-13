@@ -1,0 +1,79 @@
+@import "../constants";
+
+.Sidebar_container {
+  @media (max-width: 768px) {
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    background: $theme-transparent-bg;
+  }
+  .sideBar {
+    min-width: 280px;
+    height: calc(100vh - 130px);
+    background: $theme-white;
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.04);
+    padding-top: 30px;
+    position: relative;
+    @media (max-width: 768px) {
+      position: absolute;
+      bottom: 0px;
+      height: calc(100vh - 30px);
+      min-width: 0px;
+      max-width: 0px;
+    }
+    .menu_bar {
+      width: 16px;
+      height: 35px;
+      background: $theme-primary;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: -16px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar_content {
+      height: 100%;
+      overflow-y: scroll;
+      scrollbar-width: 0px;
+      &::-webkit-scrollbar {
+        width: 0px;
+      }
+      .link_wrap {
+        .link {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          padding: 0px 20px;
+          margin: 10px 0px;
+          column-gap: 10px;
+          color: $theme-secondary;
+          svg {
+            fill: $theme-gray;
+          }
+        }
+        .active {
+          background: $theme-primary10;
+          border-left: 3px solid $theme-primary;
+          svg {
+            fill: $theme-secondary;
+          }
+        }
+      }
+      .toggle_button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px;
+        cursor: pointer;
+        .title {
+          color: $theme-gray;
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
