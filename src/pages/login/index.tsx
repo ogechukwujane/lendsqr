@@ -3,9 +3,13 @@ import { ButtonComp, InputComp, PasswordComp } from "../../components";
 import styles from "../../styles/pages/login.module.scss";
 import { useFormik } from "formik";
 import { loginValidation } from "./validation";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const onSubmit = () => {};
+  const navigate = useNavigate();
+  const onSubmit = () => {
+    navigate("./dashboard");
+  };
 
   const { values, handleSubmit, touched, errors, handleChange } = useFormik({
     initialValues: {

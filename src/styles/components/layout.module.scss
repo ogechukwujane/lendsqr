@@ -1,0 +1,15 @@
+@import "../constants";
+
+.Layout {
+  .container {
+    display: flex;
+  }
+  .content_container {
+    background: $theme-white10;
+    width: 100%;
+    padding: 40px;
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
+  }
+}
