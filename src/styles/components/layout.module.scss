@@ -7,9 +7,12 @@
   .content_container {
     background: $theme-white10;
     width: 100%;
+    height: calc(100vh - 180px);
     padding: 40px;
+    overflow-y: scroll;
     @media (max-width: 768px) {
       padding: 20px;
+      height: calc(100vh - 110px);
     }
   }
 }

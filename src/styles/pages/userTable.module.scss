@@ -1,0 +1,59 @@
+@import "../constants.scss";
+
+.UserTable {
+  .filter_content_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 20px;
+    .box {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      .label {
+        color: $theme-gray;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+    .select,
+    .date {
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      border: 1.5px solid $theme-gray15;
+      background: $theme-white;
+    }
+    .button_flex {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      .reset_button {
+        border: 1px solid $theme-secondary;
+        color: $theme-secondary;
+        background: transparent;
+      }
+    }
+  }
+}
+.statusIndicator {
+  padding: 7px 12px;
+  border-radius: 100px;
+  text-align: center;
+}
+.inactive {
+  color: $theme-gray;
+  background: $theme-gray15;
+}
+.pending {
+  color: $theme-yellow;
+  background: $theme-yellow15;
+}
+.active {
+  color: $theme-green;
+  background: $theme-green15;
+}
+.blacklisted {
+  color: $theme-error;
+  background: $theme-error15;
+}
