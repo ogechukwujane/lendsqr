@@ -1,36 +1,41 @@
 import { Table } from "antd";
-import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
-import type { FilterValue } from "antd/es/table/interface";
-import { useState } from "react";
+import type { ColumnsType } from "antd/es/table";
+import { useMemo, useState } from "react";
 import type { TableColumnType } from "antd";
 import { DatePicker } from "antd";
 import { Select } from "antd";
 import { FilterIcon } from "../../assets";
 import { ButtonComp, InputComp } from "../../components";
 import styles from "../../styles/pages/userTable.module.scss";
+import { useGetUsersQuery } from "../../api";
 
 interface DataType {
-  name: string;
-  key: string;
-  age: number;
-  address: string;
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
+  organization: string;
+  username: string;
+  email: string;
+  phone: string;
+  date: string;
+  userStatus: string;
 }
 
 export const UserTable: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
+  const { data, isLoading } = useGetUsersQuery();
+  const [pageSize, setPageSize] = useState(50);
+
+  console.log("dddd", data);
+
+  const dataSource = useMemo(() => {
+    return (
+      data?.users.map((user) => ({
+        organization: user.organisation,
+        username: user.fullName,
+        email: user.email,
+        phone: user.phone,
+        date: user.createdAt,
+        userStatus: user.status,
+      })) ?? []
+    );
+  }, [data?.users]);
 
   const getFilterResult = (): TableColumnType<DataType> => ({
     filterDropdown: ({ setSelectedKeys, confirm, close }) => (
@@ -134,37 +139,54 @@ export const UserTable: React.FC = () => {
     {
       title: "USERNAME",
       dataIndex: "username",
+      key: "username",
       ...getFilterResult(),
     },
     {
       title: "EMAIL",
       dataIndex: "email",
+      key: "email",
       ...getFilterResult(),
     },
     {
       title: "PHONE NUMBER",
       dataIndex: "phone",
+      key: "phone",
       ...getFilterResult(),
     },
     {
       title: "DATE JOINED",
       dataIndex: "date",
+      key: "date",
       ...getFilterResult(),
     },
     {
-      title: "Status",
-      dataIndex: "date",
+      title: "STATUS",
+      dataIndex: "userStatus",
+      key: "userStatus",
       ...getFilterResult(),
+      // render: (_: unknown, banner: IHeroSection) => (
+      //   <StatusTag status={banner.bannerStatus.toLowerCase()}>
+      //     {banner.bannerStatus}
+      //   </StatusTag>
+      // ),
     },
   ];
 
   return (
     <Table
       columns={columns}
-      //   dataSource={data}
-      pagination={tableParams.pagination}
-      loading={loading}
-      //   onChange={handleTableChange}
+      dataSource={dataSource}
+      loading={isLoading}
+      pagination={{
+        defaultCurrent: 1,
+        showSizeChanger: true,
+        onShowSizeChange: (_current, size) => {
+          setPageSize(size);
+        },
+        total: data?.users?.length ?? 0,
+        pageSize: pageSize,
+      }}
     />
   );
 };
