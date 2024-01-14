@@ -6,7 +6,7 @@ export const useGetUsersQuery = () => {
   return useQuery({
     queryKey: ["USERS"],
     queryFn: () => {
-      return fetcher<IAllUser>({
+      return fetcher<IUser[]>({
         url: `${baseUrl}`,
         method: "GET",
       });

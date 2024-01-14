@@ -1,6 +1,6 @@
-import { Table } from "antd";
+import { Dropdown, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { TableColumnType } from "antd";
 import { DatePicker } from "antd";
 import { Select } from "antd";
@@ -8,6 +8,7 @@ import { FilterIcon } from "../../assets";
 import { ButtonComp, InputComp } from "../../components";
 import styles from "../../styles/pages/userTable.module.scss";
 import { useGetUsersQuery } from "../../api";
+import { useNavigate } from "react-router";
 
 interface DataType {
   organization: string;
@@ -20,13 +21,34 @@ interface DataType {
 
 export const UserTable: React.FC = () => {
   const { data, isLoading } = useGetUsersQuery();
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState(20);
+  const [organisation, setOrganisation] =
+    useState<{ value: string; label: string }[]>();
+  const navigate = useNavigate();
 
-  console.log("dddd", data);
+  const statusData = [
+    { value: "Inactive", label: "Inactive" },
+    { value: "Pending", label: "Pending" },
+    { value: "Blacklisted", label: "Blacklisted" },
+    { value: "Active", label: "Active" },
+  ];
+
+  useEffect(() => {
+    if (data) {
+      const organisations = data.map((user) => {
+        return {
+          value: user.organisation,
+          label: user.organisation,
+        };
+      });
+      setOrganisation(organisations);
+    }
+  }, [data]);
 
   const dataSource = useMemo(() => {
     return (
-      data?.users.map((user) => ({
+      data?.map((user) => ({
+        action: user,
         organization: user.organisation,
         username: user.fullName,
         email: user.email,
@@ -35,43 +57,38 @@ export const UserTable: React.FC = () => {
         userStatus: user.status,
       })) ?? []
     );
-  }, [data?.users]);
+  }, [data]);
+
+  const handleFilter = (selectedKeys, confirm) => {};
 
   const getFilterResult = (): TableColumnType<DataType> => ({
-    filterDropdown: ({ setSelectedKeys, confirm, close }) => (
-      <div
-        className={styles.UserTable}
-        style={{ padding: 8 }}
-        onKeyDown={(e) => e.stopPropagation()}
-      >
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, close }) => (
+      <div className={styles.UserTable} onKeyDown={(e) => e.stopPropagation()}>
         <div className={styles.filter_content_wrap}>
           <div className={styles.box}>
             <label className={styles.label}>Organisation</label>
             <Select
               className={styles.select}
-              defaultValue="lucy"
+              defaultValue="organization"
               allowClear
-              options={[
-                {
-                  value: "lucy",
-                  label: "Lucy",
-                },
-              ]}
-              onChange={(value) => setSelectedKeys(value ? [value] : [])}
+              options={organisation}
+              onChange={(value) =>
+                setSelectedKeys({ ...selectedKeys, organisation: value })
+              }
             />
           </div>
           <InputComp
             label="Username"
             placeholder="User"
             onChange={(e) =>
-              setSelectedKeys(e.target.value ? [e.target.value] : [])
+              setSelectedKeys({ ...selectedKeys, user: e.target.value })
             }
           />
           <InputComp
             label="Email"
             placeholder="Email"
             onChange={(e) =>
-              setSelectedKeys(e.target.value ? [e.target.value] : [])
+              setSelectedKeys({ ...selectedKeys, email: e.target.value })
             }
           />
           <div className={styles.box}>
@@ -79,7 +96,7 @@ export const UserTable: React.FC = () => {
             <DatePicker
               className={styles.date}
               onChange={(__, dateString) =>
-                setSelectedKeys(dateString ? [dateString] : [])
+                setSelectedKeys({ ...selectedKeys, date: dateString })
               }
             />
           </div>
@@ -87,7 +104,7 @@ export const UserTable: React.FC = () => {
             label="Phone Number"
             placeholder="Phone Number"
             onChange={(e) =>
-              setSelectedKeys(e.target.value ? [e.target.value] : [])
+              setSelectedKeys({ ...selectedKeys, phone: e.target.value })
             }
           />
           <div className={styles.box}>
@@ -96,13 +113,10 @@ export const UserTable: React.FC = () => {
               className={styles.select}
               defaultValue="Status"
               allowClear
-              options={[
-                {
-                  value: "lucy",
-                  label: "Lucy",
-                },
-              ]}
-              onChange={(value) => setSelectedKeys(value ? [value] : [])}
+              options={statusData}
+              onChange={(value) =>
+                setSelectedKeys({ ...selectedKeys, status: value })
+              }
             />
           </div>
           <div className={styles.button_flex}>
@@ -113,9 +127,7 @@ export const UserTable: React.FC = () => {
             />
             <ButtonComp
               text="Filter"
-              onClick={() => {
-                confirm({ closeDropdown: false });
-              }}
+              onClick={() => handleFilter(selectedKeys, confirm)}
             />
           </div>
         </div>
@@ -128,6 +140,8 @@ export const UserTable: React.FC = () => {
         .toLowerCase()
         .includes((value as string).toLowerCase()),
   });
+
+  const items = [{ key: "view", label: <a href="">hh</a> }];
 
   const columns: ColumnsType<DataType> = [
     {
@@ -165,11 +179,33 @@ export const UserTable: React.FC = () => {
       dataIndex: "userStatus",
       key: "userStatus",
       ...getFilterResult(),
-      // render: (_: unknown, banner: IHeroSection) => (
-      //   <StatusTag status={banner.bannerStatus.toLowerCase()}>
-      //     {banner.bannerStatus}
-      //   </StatusTag>
-      // ),
+      render: (value: string) => (
+        <div
+          className={`${styles.statusIndicator} ${styles[value.toLowerCase()]}`}
+        >
+          {value}
+        </div>
+      ),
+    },
+    {
+      title: "",
+      key: "action",
+      dataIndex: "action",
+      render: (value) => (
+        <Dropdown
+          menu={{
+            items,
+          }}
+        >
+          <p
+            onClick={() =>
+              navigate(`/user/${value.userId}`, { state: { value } })
+            }
+          >
+            View
+          </p>
+        </Dropdown>
+      ),
     },
   ];
 
@@ -184,7 +220,7 @@ export const UserTable: React.FC = () => {
         onShowSizeChange: (_current, size) => {
           setPageSize(size);
         },
-        total: data?.users?.length ?? 0,
+        total: data?.length ?? 0,
         pageSize: pageSize,
       }}
     />

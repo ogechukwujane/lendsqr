@@ -36,3 +36,24 @@
     }
   }
 }
+.statusIndicator {
+  padding: 7px 12px;
+  border-radius: 100px;
+  text-align: center;
+}
+.inactive {
+  color: $theme-gray;
+  background: $theme-gray15;
+}
+.pending {
+  color: $theme-yellow;
+  background: $theme-yellow15;
+}
+.active {
+  color: $theme-green;
+  background: $theme-green15;
+}
+.blacklisted {
+  color: $theme-error;
+  background: $theme-error15;
+}

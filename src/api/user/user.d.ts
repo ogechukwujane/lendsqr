@@ -10,6 +10,7 @@ interface IUser {
   residenceType: string;
   status: string;
   createdAt: string;
+  bvn: number;
   education: {
     level: string;
     employmentStatus: string;
@@ -30,8 +31,4 @@ interface IUser {
     email: string;
     relationship: string;
   }[];
-}
-
-interface IAllUser {
-  users: IUser[];
 }
