@@ -63,7 +63,7 @@ export const UserTable: React.FC = () => {
   const handleFilter = () => {};
 
   const getFilterResult = (): TableColumnType<DataType> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, close }) => (
+    filterDropdown: ({ close }) => (
       <div className={styles.UserTable} onKeyDown={(e) => e.stopPropagation()}>
         <div className={styles.filter_content_wrap}>
           <div className={styles.box}>
@@ -73,41 +73,15 @@ export const UserTable: React.FC = () => {
               defaultValue="organization"
               allowClear
               options={organisation}
-              onChange={(value) =>
-                setSelectedKeys({ ...selectedKeys, organisation: value })
-              }
             />
           </div>
-          <InputComp
-            label="Username"
-            placeholder="User"
-            onChange={(e) =>
-              setSelectedKeys({ ...selectedKeys, user: e.target.value })
-            }
-          />
-          <InputComp
-            label="Email"
-            placeholder="Email"
-            onChange={(e) =>
-              setSelectedKeys({ ...selectedKeys, email: e.target.value })
-            }
-          />
+          <InputComp label="Username" placeholder="User" />
+          <InputComp label="Email" placeholder="Email" />
           <div className={styles.box}>
             <label className={styles.label}>Date</label>
-            <DatePicker
-              className={styles.date}
-              onChange={(__, dateString) =>
-                setSelectedKeys({ ...selectedKeys, date: dateString })
-              }
-            />
+            <DatePicker className={styles.date} />
           </div>
-          <InputComp
-            label="Phone Number"
-            placeholder="Phone Number"
-            onChange={(e) =>
-              setSelectedKeys({ ...selectedKeys, phone: e.target.value })
-            }
-          />
+          <InputComp label="Phone Number" placeholder="Phone Number" />
           <div className={styles.box}>
             <label className={styles.label}>Status</label>
             <Select
@@ -115,9 +89,6 @@ export const UserTable: React.FC = () => {
               defaultValue="Status"
               allowClear
               options={statusData}
-              onChange={(value) =>
-                setSelectedKeys({ ...selectedKeys, status: value })
-              }
             />
           </div>
           <div className={styles.button_flex}>
