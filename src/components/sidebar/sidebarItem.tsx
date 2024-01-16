@@ -1,36 +1,33 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ChevronDownIcon } from "../../assets";
 import styles from "../../styles/components/sidebar.module.scss";
-import { navLinks } from "./links";
+import { FC, ReactNode } from "react";
 
-export const SidebarItem = ({ name, menus }: (typeof navLinks)[0]) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+interface ISidebarItem {
+  name: string;
+  onClick: () => void;
+  menus: { icon: ReactNode; title: string; url: string }[];
+}
+export const SidebarItem: FC<ISidebarItem> = ({ name, menus, onClick }) => {
   return (
     <div>
-      <div
-        className={styles.toggle_button}
-        onClick={() => setShowDropdown(!showDropdown)}
-      >
+      <div className={styles.toggle_button}>
         <p className={styles.title}>{name}</p>
-        <ChevronDownIcon />
       </div>
-      {showDropdown && (
-        <div className={styles.link_wrap}>
-          {menus.map(({ icon, title, url }, index) => (
-            <NavLink
-              key={index}
-              to={url}
-              className={({ isActive }) =>
-                [styles.link, isActive && styles.active].join(" ")
-              }
-            >
-              {icon}
-              <p>{title}</p>
-            </NavLink>
-          ))}
-        </div>
-      )}
+      <div className={styles.link_wrap}>
+        {menus.map(({ icon, title, url }, index) => (
+          <NavLink
+            key={index}
+            to={url}
+            onClick={onClick}
+            className={({ isActive }) =>
+              [styles.link, isActive && styles.active].join(" ")
+            }
+          >
+            {icon}
+            <p>{title}</p>
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 };

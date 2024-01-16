@@ -10,7 +10,10 @@ interface ICounter {
 export const Counter: FC<ICounter> = ({ bg, icon, title, counts }) => {
   return (
     <div className={styles.Counter}>
-      <div className={styles.icon_wrap} style={{ background: bg }}>
+      <div
+        className={[styles.icon_wrap, styles[title]].join(" ")}
+        style={{ background: bg }}
+      >
         {icon}
       </div>
       <div className={styles.title}>{title}</div>

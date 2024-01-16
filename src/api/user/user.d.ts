@@ -12,10 +12,10 @@ interface IUser {
   createdAt: string;
   bvn: number;
   education: {
-    level: string;
+    levelOfEducation: string;
     employmentStatus: string;
-    sector: string;
-    duration: string;
+    sectorOfEmployment: string;
+    durationOfEmployment: string;
     officialMail: string;
     monthlyIncome: number;
     loanRepayment: number;
@@ -25,7 +25,7 @@ interface IUser {
     facebook: string;
     instagram: string;
   };
-  guarantors: {
+  guarantor: {
     fullName: string;
     phoneNumber: string;
     email: string;

@@ -12,12 +12,37 @@ export const navLinks = [
       {
         icon: <UserIcon />,
         title: "Guarantors",
-        url: "link",
+        url: "/",
       },
       {
         icon: <UserIcon />,
         title: "Loans",
-        url: "link",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Decision Models",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Savings",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Loan Request",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Whitelist",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Karma",
+        url: "/",
       },
     ],
   },
@@ -26,18 +51,48 @@ export const navLinks = [
     menus: [
       {
         icon: <UserIcon />,
-        title: "Users",
-        url: "link",
+        title: "Organization",
+        url: "/",
       },
       {
         icon: <UserIcon />,
-        title: "Guarantors",
-        url: "link",
+        title: "Loan Products",
+        url: "/",
       },
       {
         icon: <UserIcon />,
-        title: "Loans",
-        url: "link",
+        title: "Saving Products",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Fees and Charges",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Transactions",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Services",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Service Account",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Settlements",
+        url: "/",
+      },
+      {
+        icon: <UserIcon />,
+        title: "Reports",
+        url: "/",
       },
     ],
   },
@@ -46,18 +101,18 @@ export const navLinks = [
     menus: [
       {
         icon: <UserIcon />,
-        title: "Users",
-        url: "users",
+        title: "Preferences",
+        url: "/",
       },
       {
         icon: <UserIcon />,
-        title: "Guarantors",
-        url: "link",
+        title: "Fees and Pricing",
+        url: "/",
       },
       {
         icon: <UserIcon />,
-        title: "Loans",
-        url: "link",
+        title: "Audit Logs",
+        url: "/",
       },
     ],
   },

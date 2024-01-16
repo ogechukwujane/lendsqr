@@ -26,6 +26,13 @@
     align-items: center;
     justify-content: center;
   }
+  .Users {
+    background: $theme-pink10;
+    svg {
+      fill: $theme-pink;
+      stroke: $theme-pink;
+    }
+  }
   .title {
     color: $theme-gray;
     font-size: 14px;

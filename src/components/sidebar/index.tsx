@@ -2,13 +2,22 @@ import { NavLink } from "react-router-dom";
 import styles from "../../styles/components/sidebar.module.scss";
 import { navLinks } from "./links";
 import { SidebarItem } from "./sidebarItem";
-import { ChevronLeftIcon, ChevronRightIcon, UserIcon } from "../../assets";
-import { useState } from "react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  UserIcon,
+} from "../../assets";
+import { useEffect, useState } from "react";
 import { useMedia } from "../../utils";
 
 export const SideBar = () => {
-  const [showMenu, setShowMenu] = useState(false);
   const { isDesktop } = useMedia();
+  const [showMenu, setShowMenu] = useState(true);
+
+  useEffect(() => {
+    !isDesktop ? setShowMenu(false) : setShowMenu(true);
+  }, [isDesktop]);
 
   return (
     <div
@@ -28,7 +37,19 @@ export const SideBar = () => {
         <div className={styles.sidebar_content}>
           <div className={styles.link_wrap}>
             <NavLink
-              to={"/dashboard"}
+              to={"/"}
+              onClick={() => (!isDesktop ? setShowMenu(false) : {})}
+              className={({ isActive }) =>
+                [styles.link, isActive && styles.active].join(" ")
+              }
+            >
+              <UserIcon />
+              <p>{"Switch Organization"}</p>
+              <ChevronDownIcon />
+            </NavLink>
+            <NavLink
+              to={"/"}
+              onClick={() => (!isDesktop ? setShowMenu(false) : {})}
               className={({ isActive }) =>
                 [styles.link, isActive && styles.active].join(" ")
               }
@@ -38,7 +59,12 @@ export const SideBar = () => {
             </NavLink>
           </div>
           {navLinks.map((link, index) => (
-            <SidebarItem key={index} {...link} />
+            <SidebarItem
+              key={index}
+              onClick={() => (!isDesktop ? setShowMenu(false) : {})}
+              name={link.name}
+              menus={link.menus}
+            />
           ))}
         </div>
       </div>

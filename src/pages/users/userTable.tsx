@@ -4,11 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import type { TableColumnType } from "antd";
 import { DatePicker } from "antd";
 import { Select } from "antd";
-import { FilterIcon } from "../../assets";
+import { FilterIcon, MenuIcon } from "../../assets";
 import { ButtonComp, InputComp } from "../../components";
 import styles from "../../styles/pages/userTable.module.scss";
 import { useGetUsersQuery } from "../../api";
 import { useNavigate } from "react-router";
+import moment from "moment";
 
 interface DataType {
   organization: string;
@@ -53,7 +54,7 @@ export const UserTable: React.FC = () => {
         username: user.fullName,
         email: user.email,
         phone: user.phone,
-        date: user.createdAt,
+        date: moment(user.createdAt).format("MMM DD, YYYY hh:mmA"),
         userStatus: user.status,
       })) ?? []
     );
@@ -141,8 +142,6 @@ export const UserTable: React.FC = () => {
         .includes((value as string).toLowerCase()),
   });
 
-  const items = [{ key: "view", label: <a href="">hh</a> }];
-
   const columns: ColumnsType<DataType> = [
     {
       title: "ORGANIZATION",
@@ -194,35 +193,41 @@ export const UserTable: React.FC = () => {
       render: (value) => (
         <Dropdown
           menu={{
-            items,
+            items: [
+              {
+                key: 1,
+                label: <p>View</p>,
+                onClick: () =>
+                  navigate(`view/${value.userId}`, { state: { value } }),
+              },
+            ],
           }}
         >
-          <p
-            onClick={() =>
-              navigate(`/user/${value.userId}`, { state: { value } })
-            }
-          >
-            View
-          </p>
+          <button className={styles.dropdown_button}>
+            <MenuIcon />
+          </button>
         </Dropdown>
       ),
     },
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={dataSource}
-      loading={isLoading}
-      pagination={{
-        defaultCurrent: 1,
-        showSizeChanger: true,
-        onShowSizeChange: (_current, size) => {
-          setPageSize(size);
-        },
-        total: data?.length ?? 0,
-        pageSize: pageSize,
-      }}
-    />
+    <div className={styles.table_wrap}>
+      <Table
+        className={styles.table}
+        columns={columns}
+        dataSource={dataSource}
+        loading={isLoading}
+        pagination={{
+          defaultCurrent: 1,
+          showSizeChanger: true,
+          onShowSizeChange: (_current, size) => {
+            setPageSize(size);
+          },
+          total: data?.length ?? 0,
+          pageSize: pageSize,
+        }}
+      />
+    </div>
   );
 };
