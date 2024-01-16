@@ -27,27 +27,29 @@ export const Login = () => {
           <img src={loginBg} alt="Image" />
         </div>
         <div className={styles.form_container}>
-          <h1 className={styles.title}>Welcome!</h1>
-          <p className={styles.subtitle}>Enter details to login</p>
-          <form onSubmit={handleSubmit}>
-            <InputComp
-              placeholder="Email"
-              value={values.email}
-              onChange={handleChange("email")}
-              errorMessage={touched.email ? errors.email : ""}
-            />
-            <PasswordComp
-              placeholder="Password"
-              value={values.password}
-              onChange={handleChange("password")}
-              errorMessage={touched.password ? errors.password : ""}
-            />
-            <p className={styles.forget_password}>Forgot Password?</p>
-            <ButtonComp
-              text="LOG IN"
-              disabled={!values.password || !values.email}
-            />
-          </form>
+          <div className={styles.form_content}>
+            <h1 className={styles.title}>Welcome!</h1>
+            <p className={styles.subtitle}>Enter details to login</p>
+            <form onSubmit={handleSubmit}>
+              <InputComp
+                placeholder="Email"
+                value={values.email}
+                onChange={handleChange("email")}
+                errorMessage={touched.email ? errors.email : ""}
+              />
+              <PasswordComp
+                placeholder="Password"
+                value={values.password}
+                onChange={handleChange("password")}
+                errorMessage={touched.password ? errors.password : ""}
+              />
+              <p className={styles.forget_password}>Forgot Password?</p>
+              <ButtonComp
+                text="LOG IN"
+                disabled={!values.password || !values.email}
+              />
+            </form>
+          </div>
         </div>
       </div>
     </div>

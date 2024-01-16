@@ -60,10 +60,10 @@ export const UserTable: React.FC = () => {
     );
   }, [data]);
 
-  const handleFilter = (selectedKeys, confirm) => {};
+  const handleFilter = () => {};
 
   const getFilterResult = (): TableColumnType<DataType> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, close }) => (
+    filterDropdown: ({ setSelectedKeys, selectedKeys, close }) => (
       <div className={styles.UserTable} onKeyDown={(e) => e.stopPropagation()}>
         <div className={styles.filter_content_wrap}>
           <div className={styles.box}>
@@ -126,10 +126,7 @@ export const UserTable: React.FC = () => {
               text="Rest"
               onClick={() => close()}
             />
-            <ButtonComp
-              text="Filter"
-              onClick={() => handleFilter(selectedKeys, confirm)}
-            />
+            <ButtonComp text="Filter" onClick={() => handleFilter()} />
           </div>
         </div>
       </div>
