@@ -61,4 +61,4 @@ All the working file of this app can be found in the `src` folder.
 
 ## Deployment
 
-The app is deployed using render and can be accessed via [lendsqr](https://ogechukwu-onyejekwe-lendsqr-fe-test.onrender.com)
+The app is deployed using render and can be accessed via [lendsqr](https://ogechukwu-onyejekwe-lendsqr-fe-test.netlify.app/)

@@ -44,10 +44,7 @@ export const Login = () => {
                 errorMessage={touched.password ? errors.password : ""}
               />
               <p className={styles.forget_password}>Forgot Password?</p>
-              <ButtonComp
-                text="LOG IN"
-                disabled={!values.password || !values.email}
-              />
+              <ButtonComp text="LOG IN" />
             </form>
           </div>
         </div>
