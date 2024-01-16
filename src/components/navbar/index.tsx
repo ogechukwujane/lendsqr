@@ -3,6 +3,7 @@ import {
   ChevronDownIcon,
   CloseIcon,
   NotificationIcon,
+  ProfileIcon,
   SearchIcon,
   logo,
 } from "../../assets";
@@ -52,7 +53,9 @@ export const Navbar = () => {
             <p className={styles.docs}>Docs</p>
             <NotificationIcon />
             <div className={styles.profile}>
-              <div className={styles.profile_image}></div>
+              <div className={styles.profile_image}>
+                <ProfileIcon />
+              </div>
               <div className={styles.name_wrap}>
                 <p className={styles.name}>Adaeze</p>
                 <ChevronDownIcon />
