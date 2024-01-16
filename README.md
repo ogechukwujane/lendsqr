@@ -6,8 +6,8 @@ This project was crafted using
 - Typescript and
 - SCSS
 
-This project was scaffolded using vite
-The data consumed was pulled from a mock Api(mocky.io)
+This project was scaffolded using `vite`
+The data consumed was pulled from a mock Api`(mocky.io)`
 
 ## Installation:
 
@@ -46,9 +46,9 @@ All the working file of this app can be found in the `src` folder.
 
 - The `util(folder)` which consist of all the reusable function used within the application
 
-  ** All file within any folder must be exported through it's respective index file **
+` ** All file within any folder must be exported through it's respective index file **`
 
-# Git Structure
+## Git Structure
 
     all console.log, unused variables and commented out codes must be removed before you push
 
