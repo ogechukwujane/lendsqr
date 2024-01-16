@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const navigate = useNavigate();
   const onSubmit = () => {
-    navigate("./dashboard");
+    navigate("./dashboard/users");
   };
 
   const { values, handleSubmit, touched, errors, handleChange } = useFormik({

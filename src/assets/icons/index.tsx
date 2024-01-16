@@ -12,3 +12,4 @@ export { ChevronLeftIcon } from "./chevron-left";
 export { FilterIcon } from "./filter-icon";
 export { BackIcon } from "./back-arrow";
 export { ProfileIcon } from "./profile-icon";
+export { MenuIcon } from "./menu-icon";

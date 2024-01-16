@@ -18,8 +18,10 @@ export const ViewUser = () => {
       <div className={styles.flexbox}>
         <p className={styles.header}>User Details</p>
         <div className={styles.button_wrap}>
-          <ButtonComp text="BLACCKLIST USER" className={styles.red_button} />
-          <ButtonComp text="ACTIVE USER" className={styles.primary_button} />
+          <ButtonComp
+            text={`${userDetails.status} USER`}
+            className={styles[userDetails.status.toLowerCase()]}
+          />
         </div>
       </div>
       <div className={styles.content_wrap}>

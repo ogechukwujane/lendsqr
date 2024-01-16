@@ -27,17 +27,29 @@
       display: flex;
       align-items: center;
       column-gap: 20px;
-      .red_button {
+      .blacklisted {
         border: 1px solid $theme-red;
         color: $theme-red;
         background: transparent;
         min-width: 200px;
       }
-      .primary_button {
+      .active {
         border: 1px solid $theme-primary;
         color: $theme-primary;
         background: transparent;
         min-width: 150px;
+      }
+      .inactive {
+        min-width: 180px;
+        background: transparent;
+        color: $theme-gray;
+        border: 1px solid $theme-gray;
+      }
+      .pending {
+        min-width: 180px;
+        background: transparent;
+        color: $theme-yellow;
+        border: 1px solid $theme-yellow;
       }
     }
   }

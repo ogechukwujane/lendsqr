@@ -57,3 +57,24 @@
   color: $theme-error;
   background: $theme-error15;
 }
+.table_wrap {
+  padding: 30px;
+  border-radius: 4px;
+  background: $theme-white;
+  overflow-x: scroll;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  .table {
+    min-width: 1037px;
+  }
+
+  td,
+  th {
+    background: $theme-white !important;
+  }
+}
+.dropdown_button{
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
