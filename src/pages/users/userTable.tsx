@@ -199,7 +199,7 @@ export const UserTable: React.FC = () => {
         >
           <p
             onClick={() =>
-              navigate(`/user/${value.userId}`, { state: { value } })
+              navigate(`view/${value.userId}`, { state: { value } })
             }
           >
             View
